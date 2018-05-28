@@ -20,17 +20,7 @@ namespace Szyfry
         private void Form1_Load(object sender, EventArgs e)
         {
         }
-        public static string MD5decypher(string s)
-        {
-            using (var provider = System.Security.Cryptography.MD5.Create())
-            {
-                StringBuilder builder = new StringBuilder();
-                foreach (byte b in provider.ComputeHash(Encoding.UTF8.GetBytes(s)))
-                    builder.Append(b.ToString("x2").ToLower());
-                return builder.ToString();
-            }
-        }
-        #region szyfry
+ #region szyfry
         public static string MD5(string s)
         {
             using (var provider = System.Security.Cryptography.MD5.Create())
