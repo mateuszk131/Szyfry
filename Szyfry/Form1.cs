@@ -19,142 +19,172 @@ namespace Szyfry
         }
         private void Form1_Load(object sender, EventArgs e)
         {
+
         }
- #region szyfry
-        public static string MD5(string s)
+        licz licz = new licz();
+        #region metody
+        public void clear()
         {
-            using (var provider = System.Security.Cryptography.MD5.Create())
+            if (string.IsNullOrEmpty(richTextBoxInput.Text))
             {
-                StringBuilder builder = new StringBuilder();
-                foreach (byte b in provider.ComputeHash(Encoding.UTF8.GetBytes(s)))
-                    builder.Append(b.ToString("x2").ToLower());
-                return builder.ToString();
+                richTextBoxCiphered.Text = "";
             }
+            return;
         }
-        public static string Sha1(string s)
+        public void porownanie()
         {
-            using (var provider = System.Security.Cryptography.SHA1.Create())
+            if (richTextBoxLoadCiphered.Text.Equals(richTextBoxCiphered.Text))
             {
-                StringBuilder builder = new StringBuilder();
-                foreach (byte b in provider.ComputeHash(Encoding.UTF8.GetBytes(s)))
-                    builder.Append(b.ToString("x2").ToLower());
-                return builder.ToString();
+                labelPorownanie.ForeColor = Color.Green;
+                labelPorownanie.Text = ("Hashe są jednakowe");
             }
-        }
-        public static string Sha256(string s)
-        {
-            using (var provider = System.Security.Cryptography.SHA256.Create())
+            else
             {
-                StringBuilder builder = new StringBuilder();
-                foreach (byte b in provider.ComputeHash(Encoding.UTF8.GetBytes(s)))
-                    builder.Append(b.ToString("x2").ToLower());
-                return builder.ToString();
+                labelPorownanie.ForeColor = Color.Red;
+                labelPorownanie.Text = ("Hashe są różne");
             }
-        }
-        public static string Sha384(string s)
-        {
-            using (var provider = System.Security.Cryptography.SHA384.Create())
-            {
-                StringBuilder builder = new StringBuilder();
-                foreach (byte b in provider.ComputeHash(Encoding.UTF8.GetBytes(s)))
-                    builder.Append(b.ToString("x2").ToLower());
-                return builder.ToString();
-            }
-        }
-        public static string Sha512(string s)
-        {
-            using (var provider = System.Security.Cryptography.SHA512.Create())
-            {
-                StringBuilder builder = new StringBuilder();
-                foreach (byte b in provider.ComputeHash(Encoding.UTF8.GetBytes(s)))
-                    builder.Append(b.ToString("x2").ToLower());
-                return builder.ToString();
-            }
+            return;
         }
         #endregion
         #region radio button check
         private void radioButtonMD5_CheckedChanged(object sender, EventArgs e)
         {
-            richTextBoxCiphered.Text = MD5(richTextBoxInput.Text);
+            richTextBoxCiphered.Text = licz.MD5(richTextBoxInput.Text);
         }
         private void radioButtonSha1_CheckedChanged(object sender, EventArgs e)
         {
-            richTextBoxCiphered.Text = Sha1(richTextBoxInput.Text);
+            richTextBoxCiphered.Text = licz.SHA1(richTextBoxInput.Text);
         }
         private void radioButtonSha256_CheckedChanged(object sender, EventArgs e)
         {
-            richTextBoxCiphered.Text = Sha256(richTextBoxInput.Text);
+            richTextBoxCiphered.Text = licz.SHA256(richTextBoxInput.Text);
         }
         private void radioButtonSha384_CheckedChanged(object sender, EventArgs e)
         {
-            richTextBoxCiphered.Text = Sha384(richTextBoxInput.Text);
+            richTextBoxCiphered.Text = licz.SHA384(richTextBoxInput.Text);
         }
         private void radioButtonSha512_CheckedChanged(object sender, EventArgs e)
         {
-            richTextBoxCiphered.Text = Sha512(richTextBoxInput.Text);
+            richTextBoxCiphered.Text = licz.SHA512(richTextBoxInput.Text);
         }
         #endregion
+        #region zmiany w tekscie
         private void richTextBoxInput_TextChanged(object sender, EventArgs e)
         {
             if (radioButtonMD5.Checked)
             {
-                richTextBoxCiphered.Text = MD5(richTextBoxInput.Text);
+                richTextBoxCiphered.Text = licz.MD5(richTextBoxInput.Text);
             }
             if (radioButtonSha1.Checked)
             {
-                richTextBoxCiphered.Text = Sha1(richTextBoxInput.Text);
+                richTextBoxCiphered.Text = licz.SHA1(richTextBoxInput.Text);
             }
             if (radioButtonSha256.Checked)
             {
-                richTextBoxCiphered.Text = Sha256(richTextBoxInput.Text);
+                richTextBoxCiphered.Text = licz.SHA256(richTextBoxInput.Text);
             }
             if (radioButtonSha384.Checked)
             {
-                richTextBoxCiphered.Text = Sha384(richTextBoxInput.Text);
+                richTextBoxCiphered.Text = licz.SHA384(richTextBoxInput.Text);
             }
             if (radioButtonSha512.Checked)
             {
-                richTextBoxCiphered.Text = Sha512(richTextBoxInput.Text);
+                richTextBoxCiphered.Text = licz.SHA512(richTextBoxInput.Text);
             }
+            clear();
+            porownanie();
         }
+        private void richTextBoxCiphered_TextChanged(object sender, EventArgs e)
+        {            
+            porownanie();
+        }
+        private void richTextBoxLoadCiphered_TextChanged(object sender, EventArgs e)
+        {
+            porownanie();
+        }
+        #endregion
+        #region buttony
         private void buttonSave_Click(object sender, EventArgs e)
         {
             if (radioButtonMD5.Checked)
             {
-                System.IO.File.WriteAllText(@"MD5.txt", richTextBoxCiphered.Text + Environment.NewLine);
+                System.IO.File.WriteAllText(@"MD5.txt", richTextBoxCiphered.Text);
             }
             if (radioButtonSha1.Checked)
             {
-                System.IO.File.WriteAllText(@"Sha1.txt", richTextBoxCiphered.Text + Environment.NewLine);
+                System.IO.File.WriteAllText(@"SHA1.txt", richTextBoxCiphered.Text);
             }
             if (radioButtonSha256.Checked)
             {
-                System.IO.File.WriteAllText(@"Sha256.txt", richTextBoxCiphered.Text + Environment.NewLine);
+                System.IO.File.WriteAllText(@"SHA256.txt", richTextBoxCiphered.Text);
             }
             if (radioButtonSha384.Checked)
             {
-                System.IO.File.WriteAllText(@"Sha384.txt", richTextBoxCiphered.Text + Environment.NewLine);
+                System.IO.File.WriteAllText(@"Sha384.txt", richTextBoxCiphered.Text);
             }
             if (radioButtonSha512.Checked)
             {
-                System.IO.File.WriteAllText(@"Sha512.txt", richTextBoxCiphered.Text + Environment.NewLine);
+                System.IO.File.WriteAllText(@"Sha512.txt", richTextBoxCiphered.Text);
             }
         }
-
         private void buttonLoad_Click(object sender, EventArgs e)
         {
-            if (radioButtonMD5.Checked)
+            labelPorownanie.Visible = true;
+            if (radioButtonMD5Load.Checked)
             {
                 richTextBoxLoadCiphered.LoadFile(@"MD5.txt", RichTextBoxStreamType.PlainText);
             }
+            if (radioButtonSHA1Load.Checked)
+            {
+                richTextBoxLoadCiphered.LoadFile(@"SHA1.txt", RichTextBoxStreamType.PlainText);
+            }
+            if (radioButtonSHA256Load.Checked)
+            {
+                richTextBoxLoadCiphered.LoadFile(@"SHA256.txt", RichTextBoxStreamType.PlainText);
+            }
+            if (radioButtonSHA384Load.Checked)
+            {
+                richTextBoxLoadCiphered.LoadFile(@"Sha384.txt", RichTextBoxStreamType.PlainText);
+            }
+            if (radioButtonSHA512Load.Checked)
+            {
+                richTextBoxLoadCiphered.LoadFile(@"Sha512.txt", RichTextBoxStreamType.PlainText);
+            }
+            porownanie();
         }
-
-        private void richTextBoxLoadCiphered_TextChanged(object sender, EventArgs e)
+        #endregion
+        #region menu strip
+        private void wyjdźToolStripMenuItem_Click(object sender, EventArgs e)
         {
-          
+            this.Close();
+        }        
+        private void celProjektuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            cel cel = new cel();
+            cel.Show();
         }
+        private void dokumentacjaToolStripMenuItem_Click(object sender, EventArgs e)
+        {           
+            System.Diagnostics.Process.Start("Dokumentacja.pdf");
+        }
+        private void oAutorzeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+        #endregion
+        #region button clear'e
+        private void buttonDecypheredClear_Click(object sender, EventArgs e)
+        {
+            richTextBoxCiphered.Text = "";
+        }
+        private void buttonInputClear_Click(object sender, EventArgs e)
+        {
+            richTextBoxInput.Text = "";
+        }
+        private void buttonLoadClear_Click(object sender, EventArgs e)
+        {
+            richTextBoxLoadCiphered.Text = "";
+        }
+        #endregion
     }
 }
-
-
-
