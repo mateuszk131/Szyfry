@@ -320,7 +320,7 @@
             // 
             this.buttonLoadClear.BackColor = System.Drawing.SystemColors.Window;
             this.buttonLoadClear.Image = global::Szyfry.Properties.Resources.error1;
-            this.buttonLoadClear.Location = new System.Drawing.Point(291, 173);
+            this.buttonLoadClear.Location = new System.Drawing.Point(300, 173);
             this.buttonLoadClear.Name = "buttonLoadClear";
             this.buttonLoadClear.Size = new System.Drawing.Size(23, 25);
             this.buttonLoadClear.TabIndex = 13;
@@ -395,7 +395,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Szyfrowanie";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
