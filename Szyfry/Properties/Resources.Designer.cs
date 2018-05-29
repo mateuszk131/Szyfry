@@ -63,16 +63,6 @@ namespace Szyfry.Properties {
         /// <summary>
         ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap error {
-            get {
-                object obj = ResourceManager.GetObject("error", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap error1 {
             get {
                 object obj = ResourceManager.GetObject("error1", resourceCulture);
@@ -86,16 +76,6 @@ namespace Szyfry.Properties {
         internal static System.Drawing.Bitmap HappyFace {
             get {
                 object obj = ResourceManager.GetObject("HappyFace", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap UKW_logo {
-            get {
-                object obj = ResourceManager.GetObject("UKW logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
